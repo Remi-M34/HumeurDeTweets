@@ -1,0 +1,84 @@
+doctype html
+html(lang='fr')
+  head
+    title Humeur de Tweets
+    meta(charset='UTF8')
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='shortcut icon', type='image/x-icon', href='images/favicon.ico')
+    link(href='https://fonts.googleapis.com/css?family=Roboto+Condensed', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Lato')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js', type='text/javascript')
+    script(src='http://www.skulpt.org/static/skulpt.min.js', type='text/javascript')
+    script(src='http://www.skulpt.org/static/skulpt-stdlib.js', type='text/javascript')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(src='/javascripts/global.js')
+  style.
+      ul {
+      list-style-type: none;
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background-color: #333;
+      }
+      .tweet {
+      margin-left: auto;
+      margin-right: auto;
+      width: 85%;
+      }
+
+      li {
+      float: left;
+      }
+      li a {
+      display: inline-block;
+      color: white;
+      text-align: center;
+      padding: 14px 16px;
+      text-decoration: none;
+      }
+      li a:hover {
+      background-color: #111;
+      }
+  body
+    header
+      img.logo(src='/images/um.png', width='800')
+      h2
+        | Humeur
+        h2
+
+
+    .pageaccueil
+
+
+
+      .page
+        br
+        ul
+          li
+            a(href='#home') Home
+          li
+            a(href='#news') News
+          li
+            a(href='#contact') Contact
+          li
+            a(href='#about') About
+        //- .twitter
+        //-   br
+        button(type="button", onclick="makeCallToFoo()") Run python script
+      
+        h1.
+            Tweets
+        ul(class="tweet")
+            each tweet, i in tweets
+                    li
+                        a()= tweet.analyse
+                        a()= " "
+                        a()= tweet.user.name
+                        b(style=" color: #FF33333")   dit :
+                        br
+                        a()= tweet.tweet_complet
+                        br 
+                        br
+                        a()= "Corrigé :"
+                        a()= tweet.tweet_corrige
+                        hr

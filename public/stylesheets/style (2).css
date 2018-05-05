@@ -1,0 +1,233 @@
+﻿
+.sep{
+    padding:10px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:16px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border-bottom: 5px solid rgb(157, 159, 170);}
+
+.tweettd{
+    padding:10px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:300;
+    font-size:16px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border: 0;
+}
+
+.tweettd a{
+    text-decoration: none;
+
+}
+
+.tweettdmid{
+    padding:10px;
+    text-align:left;
+    vertical-align:middle;
+    font-weight:600;
+    font-size:18px;
+    text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+    border: 0;
+}
+
+.style-two {
+        border: 0;
+        height: 1px;
+        background-image: linear-gradient(to right, rgba(0, 0, 0, 0), rgba(0, 0, 0, 0.75), rgba(0, 0, 0, 0));
+    }
+    
+
+.page button
+{
+    background-image: url(/images/b11.png);
+    border: 0px solid black;
+    position: absolute;
+    margin-left: -70px;
+    
+}
+
+.wait
+{
+    position: absolute;
+    margin-top: 50px;
+    z-index: 0;
+}
+
+.page button img
+{
+    width: 50px;
+}
+
+.twitter
+{
+width: 340px;
+float: right;
+height: 1300px;
+margin-top: -80px;
+}
+
+#ecran
+{
+    float:left;
+margin-left: -55px;
+width: 66%;
+}
+
+
+footer
+{
+    margin-top: 27px;
+    margin-left: 46%;
+    font-size: 12px;
+    color: grey;
+    font-weight: bold;
+}
+
+
+header
+{
+
+    margin-left: 28%;
+
+}
+
+header h2
+{    position: absolute;
+
+    /* transform: rotate(-5deg); */
+    
+    font-size: 2.8em;
+    margin-top: -60px;
+    margin-left: 430px;
+    width: 350px;
+    
+    text-align: center;
+    color: #202020;
+    /* background-color: #2d2d2d; */
+    letter-spacing: .1em;
+    text-shadow: 
+      -1px -1px 1px #111, 
+      2px 2px 1px #363636;
+}
+
+.pageaccueil h3
+{
+    font-family: 'Roboto', sans-serif;
+    
+}
+
+.pageaccueil img
+{
+    margin-top: -100px;
+}
+
+.pageaccueil
+{
+    margin-left: 20px;
+}
+
+.page
+{
+    width: 900px;
+    min-height: 1000px;
+    margin-left: 25%;
+    padding-right:20px;
+    
+background-image: url(/images/b7.png);
+    border-radius: 5px 5px 5px 5px;
+  box-shadow: 2px 2px 3px 2px #ccc;
+
+    
+    
+}
+
+.descriptionaccueil 
+{
+width: 850px;
+}
+
+.descriptionaccueil h2
+{
+    margin-left: 100px;
+}
+
+
+
+
+ul
+{
+    padding-left: 12px;
+}
+
+  
+tr {
+    border: 1px solid #C1C3D1;
+  color:#666B85;
+  text-shadow: 0 1px 1px rgba(256, 256, 256, 0.1);
+}
+
+
+td {
+    padding-top:20px;
+    padding-bottom:20px;
+    padding-right:7px;
+    padding-left:7px;
+  padding-top:20px;
+    text-align:left;
+  vertical-align:middle;
+  font-weight:300;
+  font-size:16px;
+  text-shadow: -1px -1px 1px rgba(0, 0, 0, 0.1);
+  border-bottom: 2px solid #C1C3D1;
+}
+
+
+td.text-left {
+  text-align: left;
+
+}
+
+td.text-right {
+  text-align: left;
+    width: 82%;
+}
+
+
+
+
+html
+{
+    
+    background-color: #333333;
+    background-image: url(/images/b11.png);
+    z-index: 999;
+    background-repeat: repeat;
+    font-family: 'Lato', sans-serif;
+}
+
+h1
+{
+    text-transform: uppercase;
+}
+
+
+.page
+{
+    /* display: flex; */
+}
+
+
+p
+{
+    font-size: 13px;
+}
+
+
+.description
+{
+    width: 67%;
+    margin-left: 60px;
+}

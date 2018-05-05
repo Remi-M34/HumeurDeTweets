@@ -1,0 +1,209 @@
+html(lang='fr')
+  head
+    title Humeur de Tweets
+    meta(charset='UTF8')
+    meta
+    link(rel='stylesheet', href='stylesheets/style.css')
+    link(rel='stylesheet', href='stylesheets/stylebtn.css')
+    link(rel='shortcut icon', type='image/x-icon', href='images/favicon.ico')
+    link(href='https://fonts.googleapis.com/css?family=Roboto+Condensed', rel='stylesheet')
+    link(rel='stylesheet', type='text/css', href='http://fonts.googleapis.com/css?family=Lato')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js', type='text/javascript')
+    script(src='http://www.skulpt.org/static/skulpt.min.js', type='text/javascript')
+    script(src='http://www.skulpt.org/static/skulpt-stdlib.js', type='text/javascript')
+    script(src='http://ajax.googleapis.com/ajax/libs/jquery/2.0.3/jquery.min.js')
+    script(src='/javascripts/global.js')
+    
+  body
+    header
+      img.logo(src='/images/um.png', width='800')
+      h2
+        | Tweets
+        h2
+
+
+    .page
+
+      .pageaccueil
+        br
+        //- ul(id="menu")
+        //-   li
+        //-     a(href='#home') Menu1
+        //-   li
+        //-     a(href='#') Menu2
+        //-   li
+        //-     a(href='#contact') Menu3
+        //-   li
+        //-     a(href='#about') Menu4
+
+        div(id="javapage")
+          div(id="connecteh")
+          div(id="connecte")
+          //- img.logo(src='/images/cloud.png' id='cloud')
+          //- a(href="#" onClick="return reloadImg('cloud');") Reload
+          //- button ok
+          //- h2(class="actions") Actions sur les mots-clés
+
+          div(id="boiteadministration") 
+            h3 Administration
+            div
+              button#btnGetTweetsMenu + Tweets
+              br
+              br
+              #addKeyWords
+                fieldset
+                    //- div(id="listKeyWords")
+                    input#inputKeyWord(type='text', placeholder='Mot-clé')
+                    button#btnAddKeyWord(data-tooltip="Ajoute le mot-clé saisi") Ajouter
+                    button#btnRemoveKeyWords(data-tooltip="Supprime tous les mots clés") Tout supprimer
+                    br
+                    button#btnGetTweets(data-tooltip="Récupère vingt tweet dans la base de données avec les mots-clés saisis") Récupérer 20 Tweets
+            div
+              button.btnviolet#btnGestion + Gestion
+              br
+              br
+              #gestion
+                button(id="btnCorrectAll" class="btnvert3" data-tooltip="Génère la version réduite de tous les tweets") Tokeniser
+                button(id="btnSuppAll" class="btnrouge" data-tooltip="Supprimera définitivement tous les tweets de la collection actuellement affichée de la base de données") Vider la BDD
+                br
+                button(id="btnall" class="btnmarron") Voir tous les tweets
+                button(id="btncorbeille" class="btnviolet") Voir les tweets signalés
+                hr
+            div
+              button.btnbleuvert#btnLogMenu + Log
+              br
+              #logmenu
+                button(id="btnShowLog" class="btnvert" data-tooltip="Affiche l'historique en haut à droite de la fenêtre") Log
+                  //- span(id="logcount") Log
+                button(id="btnSuppLog" class="btnrouge" data-tooltip="Efface l'intégralité de l'historique") Vider log
+
+          #wrapper
+
+              div(class="actionsSupp")
+
+                table(cellspacing="5" cellpadding="0" id="actionsTweets")
+                    thead
+                        th
+                          button(id="btnattente" class="btnbleuvert" w3-red) A évaluer
+                        th
+                          button(id="btnmesevals" class="btnbleu2") Mes évaluations
+                        th
+                          button(id="btnres" class="btnorange") Résultats
+                    tbody
+
+              div(id="logbox")
+
+              <span id='test'></span>
+              hr
+
+              div#InfoBox
+              div#Notifications
+                p Notification: Tweet évalué
+                
+
+              #userInfo(class="infos")
+                  h2 Informations supplémentaires
+                  img(src="" id="imageprofil")
+                  p
+                      strong Nom: 
+                      |  <span id='userInfoName'></span>
+                      hr
+                      strong Description: 
+                      |  <span id='userInfoDescription'></span>
+                      hr
+                      hr
+                      hr
+                      strong Message cité: 
+                      |  <span id='userInfoCite'></span>
+                      hr
+                      strong Posté le: 
+                      |  <span id='userInfoCree'></span>
+                      hr
+                      strong Localisation: 
+                      |  <span id='userInfoVille'></span>
+
+
+              span#Version
+              h2(id="listeTweets") Liste des Tweets en attente d'évaluation
+              #tweetList
+                  table(cellspacing="0" cellpadding="0")
+                      thead
+                          th
+                          th Nom
+                          th Tweet
+                          th#car Caractère
+                          hr
+                      tbody
+              div#version_classique
+                hr
+                div#OneTweetEval
+                div#OneTweetInfosU
+                div#OneTweetInfosL
+                div#OneTweet
+
+
+              div(class="fa fa-twitter loading-icon" id="twitter_loading" display="none")
+                img(src="https://upload.wikimedia.org/wikipedia/fr/c/c8/Twitter_Bird.svg")
+
+              div(class="fa fa-twitter loading-icon" id="twitter_purple" display="none")
+                img(src="/images/twitter_violet.svg")
+
+        .form(id="connexioninscription")
+          ul.tab-group
+            li.tab.active
+              a(href='#login') Connexion
+            li.tab
+              a(href='#signup') Inscription
+          .tab-content
+            #login
+              h1 Identifiez-vous
+              form(action='/', method='post')
+                .field-wrap
+                  label
+                    | Identifiant
+                    span.req *
+                  input(id="loginUserName" type='text', required='', autocomplete='off', autofocus='')
+                .field-wrap
+                  label
+                    | Mot de passe
+                    span.req *
+                  input(id="loginUserPassword" type='password', autocomplete='off', required='')
+                .field-wrap
+                  label
+                    | Rester connecté
+                    span.req
+                  input(type="checkbox" id="resterConnecte")
+                button.button.button-block(id="btnconnexion") Connexion
+            #signup
+              h1 S'inscrire
+              form(action='/', method='post')
+                .top-row
+                  .field-wrap
+                  //-   label
+                  //-     | First Name
+                  //-     span.req *
+                  //-   input(type='text', required='', autocomplete='off')
+                  //- .field-wrap
+                  //-   label
+                  //-     | Last Name
+                  //-     span.req *
+                  //-   input(type='text', required='', autocomplete='off')
+                .field-wrap
+                  label
+                    | Identifiant
+                    span.req *
+                  input(id="inputUserName" type='text', required='', autocomplete='off')
+                .field-wrap
+                  label
+                    | Adresse Email
+                    span.req *
+                  input(id="inputUserEmail" type='email', required='', autocomplete='off')
+                .field-wrap
+                  label
+                    | Mot de passe
+                    span.req *
+                  input(id="inputUserPassword" type='password', autocomplete='off', required='')
+                button.button.button-block(id="btninscription") S'inscrire
+
+          // tab-content
+        div(id="mySpinner")
