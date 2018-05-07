@@ -16,10 +16,11 @@ html(lang='fr')
     
   body
     header
-      img.logo(src='/images/um.png', width='800')
-      h2
-        | Tweets
-        h2
+      img#logo(src='/images/um.png', width='800')
+      img#smallbird(src='/images/origami_twitter.PNG')
+      img#pixelbird(src='/images/twitter_pixel.PNG')
+      //- img#punkbird(src='/images/twitter_steampunk.PNG')
+      //- img#oldstyle(src='/images/twitter_oldstyle.PNG')
 
 
     .page
@@ -39,10 +40,6 @@ html(lang='fr')
         div(id="javapage")
           div(id="connecteh")
           div(id="connecte")
-          //- img.logo(src='/images/cloud.png' id='cloud')
-          //- a(href="#" onClick="return reloadImg('cloud');") Reload
-          //- button ok
-          //- h2(class="actions") Actions sur les mots-clés
 
           div(id="boiteadministration") 
             h3 Administration
@@ -207,3 +204,6 @@ html(lang='fr')
 
           // tab-content
         div(id="mySpinner")
+    footer
+      img#oldstyle(src='/images/twitter_oldstyle.PNG')
+      span#footertext 2018 - Site réalisé dans le cadre du projet Humeur de Tweets

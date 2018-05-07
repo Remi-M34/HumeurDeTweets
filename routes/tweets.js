@@ -173,9 +173,9 @@ router.post('/recuperer/:id_str/', function (req, res) {
 
     signales.findOne({ id_str: req.params.id_str }, function (err, tweet) {
         if (tweet)
-                console.log('Récupération de tweet');
-                collection.insert(tweet);
-                signales.remove({ id_str: req.params.id_str });
+            console.log('Récupération de tweet');
+        collection.insert(tweet);
+        signales.remove({ id_str: req.params.id_str });
         res.send(
             (err === null) ? { msg: '' } : { msg: err }
         );
@@ -199,36 +199,54 @@ router.post('/changenote/:id/:user/:pos/:dec', function (req, res) {
         { "id_str": id },
         update, function (err) {
             if (!err) {
-                if (req.params.dec === "true")
-{                collection.update({"id_str": id}, { $inc: { "evaluations": +1 } });
-                db.collection('utilisateurs').update(
-                    { "pseudo": req.params.user },
-                    { $inc: { "evaluations_restantes": -1 } }, function (err) {
+                if (req.params.dec === "true") {
+                    collection.update({ "id_str": id }, { $inc: { "evaluations": +1 } });
+                    db.collection('utilisateurs').update(
+                        { "pseudo": req.params.user },
+                        { $inc: { "evaluations_restantes": -1 } }, function (err) {
 
-                    });}
+                        });
+                }
+
+
+
+
+                // Remplace la fonction valide -- Valide ou non le tweet
+                collection.findOne({ id_str: id }, function (err, tweet) {
+                    if (tweet && (tweet.evaluations > 2)) {
+
+
+                console.log('Validation..');
+
+                var positif = 0, neutre = 0, negatif = 0;
+                var uti = tweet.utilisateurs;
+
+                Object.keys(tweet.utilisateurs).forEach(function (key) {
+                    if (uti[key] === 'positif') {
+                        positif++;
+                    } else if (uti[key] === 'neutre') {
+                        neutre++;
+                    } else if (uti[key] === 'negatif') {
+                        negatif++;
+                    }
+                });
+
+                if (Math.max(positif, neutre, negatif) > ((positif + negatif + neutre) - Math.max(positif, neutre, negatif) - Math.min(positif,negatif,neutre))) {
+                    update = { $set: { valide: true } };
+                    console.log('Tweet valide');
+
+                }
+                else {
+                    update = { $set: { valide: false } };
+                    console.log('Tweet non valide');
+
+                }
+
+                collection.update({ id_str: id }, update);
+
+            }});
+
             }
-            // return res.send({msg: err});
-
-
-            // var mydoc = collection.findOne({ "id_str": id });
-
-            // collection.findOne({ 'id_str': id }, function (err, item) {
-            //     if (err) {
-            //         console.log("something went wrong: " + err);
-            //         return res.status(500).send(err);
-            //     }
-            //     else {
-            //         console.log(item);
-            //         console.log(user + note);
-            //         }
-            //             collection.insert(item, function (err, result) {
-            //                 console.log('insere');
-            //             });
-
-            //         return res.status(200).send(item);
-            //     }
-            // );
-            // return;
 
             res.send(
                 (err === null) ? { msg: '' } : { msg: err }
@@ -237,6 +255,9 @@ router.post('/changenote/:id/:user/:pos/:dec', function (req, res) {
 
 
 });
+
+
+
 
 
 router.post('/connexion', function (req, res) {

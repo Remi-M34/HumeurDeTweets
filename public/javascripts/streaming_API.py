@@ -17,9 +17,6 @@ for i in db.keywords.find():
     dico.append(i['keyword'])
 
 
-
-WORDS = dico
-
 CONSUMER_KEY = "LpIh8UFClODKCCPOk7oOaiP2z"
 CONSUMER_SECRET = "VFiecZf2rfDNYhY4m1QsCEIWhy3fC5Idz6ji0wLiwzQ7HhFsYg"
 ACCESS_TOKEN = "709518086978850817-E9kFUKqUrVSzyhZVHYKPDSCRFTkzOyr"
@@ -29,7 +26,7 @@ class StreamListener(tweepy.StreamListener):
     #This is a class provided by tweepy to access the Twitter Streaming API. 
 
     counter = 0
-    num_tweets_to_grab = 100
+    num_tweets_to_grab = 50
         
         
     def on_connect(self):
@@ -90,6 +87,7 @@ class StreamListener(tweepy.StreamListener):
             datajson['utilisateurs'] = {}
             datajson['signalements'] = 0
             datajson['evaluations'] = 0
+            datajson['valide'] = False
 
             if datajson['truncated'] == False:
                 datajson['tweet_complet'] = datajson['text']
@@ -108,5 +106,5 @@ auth.set_access_token(ACCESS_TOKEN, ACCESS_TOKEN_SECRET)
 #Set up the listener. The 'wait_on_rate_limit=True' is needed to help with Twitter API rate limiting.
 listener = StreamListener(api=tweepy.API(wait_on_rate_limit=True)) 
 streamer = tweepy.Stream(auth=auth, listener=listener)
-print("Tracking" + str(WORDS))
-streamer.filter(track=WORDS)
+print("Tracking" + str(dico))
+streamer.filter(track=dico)

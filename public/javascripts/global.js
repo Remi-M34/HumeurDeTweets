@@ -393,11 +393,23 @@ function bar(tweet) {
 
     var str = "#" + tweet.id_str;
 
+    var rad = "4px";
+    var fullrad = rad + " " + rad + " " + rad + " " + rad;
+
     if (positif > 0) {
         $('button[id="' + tweet.id_str + '"][class="bar_positif"]').css('width', positif_s);
         $('button[id="' + tweet.id_str + '"][class="bar_positif"]').css('display', 'inline-block');
         $('button[id="' + tweet.id_str + '"][class="bar_positif"]').html(positif_s);
         $('button[id="' + tweet.id_str + '"][class="bar_positif"]').attr('data-tooltip', pos_str);
+
+        if (neutre + negatif === 0) {
+            $('button[id="' + tweet.id_str + '"][class="bar_positif"]').css('border-radius', fullrad);
+        }
+        else
+        {
+            $('button[id="' + tweet.id_str + '"][class="bar_positif"]').css('border-top-left-radius', rad);
+            $('button[id="' + tweet.id_str + '"][class="bar_positif"]').css('border-bottom-left-radius', rad);
+        }
 
     }
     if (neutre > 0) {
@@ -405,7 +417,16 @@ function bar(tweet) {
         $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').css('display', 'inline-block');
         $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').html(neutre_s);
         $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').attr('data-tooltip', neu_str);
-
+        if (positif + negatif === 0) {
+            $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').css('border-radius', fullrad);
+        }
+        else if (negatif === 0) {
+            $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').css('border-top-right-radius', rad);
+            $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').css('border-bottom-right-radius', rad);        }
+        else if (positif === 0) {
+            $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').css('border-top-left-radius', rad);
+            $('button[id="' + tweet.id_str + '"][class="bar_neutre"]').css('border-bottom-left-radius', rad);
+        }
     }
     if (negatif > 0) {
         $('button[id="' + tweet.id_str + '"][class="bar_negatif"]').css('width', negatif_s);
@@ -413,7 +434,15 @@ function bar(tweet) {
         $('button[id="' + tweet.id_str + '"][class="bar_negatif"]').html(negatif_s);
         $('button[id="' + tweet.id_str + '"][class="bar_negatif"]').attr('data-tooltip', neg_str);
 
+        if (positif + neutre === 0) {
+            $('button[id="' + tweet.id_str + '"][class="bar_negatif"]').css('border-radius', fullrad);
 
+        }
+        else {
+            $('button[id="' + tweet.id_str + '"][class="bar_negatif"]').css('border-top-right-radius', rad);
+            $('button[id="' + tweet.id_str + '"][class="bar_negatif"]').css('border-bottom-right-radius', rad);
+
+        }
     }
 }
 
@@ -448,7 +477,7 @@ function populateTableRes() {
 
             tableContent += '<td></td>';
 
-            tableContent += '<td><button id="' + this.id_str + '" class="bar_positif""></button><button id="' + this.id_str + '" class="bar_neutre""></button><button id="' + this.id_str + '" class="bar_negatif""></button><a href="#" class="linkshowuser" rel="' + this.id_str + '">(' + this.evaluations + ')<br><button  class="btnvert">' + this.user.screen_name + '</button></a></td>';
+            tableContent += '<td><button id="' + this.id_str + '" class="bar_positif""></button><button id="' + this.id_str + '" class="bar_neutre""></button><button id="' + this.id_str + '" class="bar_negatif""></button>(' + this.evaluations + ' évaluations' + ')<br><a href="#" class="linkshowuser" rel="' + this.id_str + '"><button  class="btnvert">' + this.user.screen_name + '</button></a></td>';
 
             tableContent += '<td>' + this.tweet_complet + '</td>';
 
@@ -462,7 +491,7 @@ function populateTableRes() {
             tableContent += '<td>' + this.tweet_corrige + '</td>';
             tableContent += '<td class="deuxieme"></td>';
             tableContent += '</tr>';
-            
+
             $('#tweetList table tbody').append(tableContent);
             bar(this);
 
@@ -498,7 +527,7 @@ function getOneTweet() {
 
 
     $('#twitter_loading').css("display", "none");
-    $('#InfoBox').html("Ci-dessous un tweet que vous pouvez évaluer positif, neutre ou négatif.<br>Si vous n'êtes pas sûr ou si il vous paraît être objectif, évaluez-le neutre.<br>Si le tweet ne contient aucun ou trop peu d'éléments pour son évaluation, si il n'a pas été entièrement rédigé en anglais ou si il ne s'affiche pas, veuillez le signaler.<br><br>Votre nombre d'évaluations est limité et vous devrez en utiliser au moins 20 pour accéder aux résultats.<br>Les tweets sont séléctionnés aléatoirement sur le seul critère que vous ne l'ayez pas déjà évalué.<br><br>Si le tweet est une réponse à un autre, attention à ne pas les confondre. Le tweet à évaluer sera toujours en dessous de l'autre.");
+    $('#InfoBox').html("Ci-dessous un tweet que vous pouvez évaluer positif, neutre ou négatif.<br>Si vous n'êtes pas sûr ou si il vous paraît être objectif, évaluez-le neutre.<br>Si le tweet ne contient aucun ou trop peu d'éléments pour son évaluation, si il n'a pas été entièrement rédigé en anglais ou si il ne s'affiche pas, veuillez le signaler.<br><br>Les tweets sont séléctionnés aléatoirement sur le seul critère que vous ne l'ayez pas déjà évalué.<br><br>Si le tweet est une réponse à un autre, attention à ne pas les confondre. Le tweet à évaluer sera toujours en dessous de l'autre.");
     $('#InfoBox').css("border-top", "20px solid #009688");
     $('#userInfo').css('display', 'none');
     typet = 'ot';
@@ -712,6 +741,7 @@ function populateTable(tw) {
     $('#version_classique').css("display", "none");
     $('#tweetList').css("display", "inline");
     $('.page').css("background-image", "url(/images/b7.png)");
+    $('#Version').show();
 
     if (typet != 't') {
         $('#tweetList table tbody').html(tableContent);
@@ -854,7 +884,8 @@ function connecte(user) {
 
     document.getElementById("boiteadministration").style.display = "inline";
 
-    $('#connecte').html("<button data-tooltip='Cette action vous déconnectera' id='deconnexion'>Déconnexion</button><span id='connectetexte'>Vous êtes connecté en tant que " + user.pseudo + "</span><br><br><span id='evaluations_restantes'>Il vous reste " + utilisateur.evaluations_restantes + " tweets à évaluer</span><br><span id='afficher_version_reduite'>Afficher/cacher versions réduites</span>");
+    $('#connecte').html("<button data-tooltip='Cette action vous déconnectera' id='deconnexion'>Déconnexion</button><span id='connectetexte'>Vous êtes connecté en tant que " + user.pseudo + "</span><br><br><span id='evaluations_restantes'>Il vous reste " + utilisateur.evaluations_restantes + " tweets à évaluer</span>");
+    // $('#connecte').append("<br><span id='afficher_version_reduite'>Afficher/cacher versions réduites</span>");
 
     $('#deconnexion').on('click', deconnexion);
     $('#Version').html('Version compacte');
@@ -1485,9 +1516,10 @@ function deleteTweet(event) {
                 alert('Error: ' + response.msg);
             }
 
-            if (typet === 't')
+            if (typet === 't') {
                 tweetListData.splice(arrayPosition2, 1);
-            else if (typet === 'a')
+                populateTable("t");
+            } else if (typet === 'a')
                 allTweets(typet);
             else if (typet === 'me')
                 return populateTableMesEvals();

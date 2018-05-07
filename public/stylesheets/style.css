@@ -567,6 +567,7 @@ fieldset{
     padding: 9px 9px 9px 22px;
     border: 2px solid #53687E;
     border-radius: 5px 5px 5px 5px;
+    z-index: 9999;
 }
 
 
@@ -664,7 +665,7 @@ blockquote.twitter-tweet a:focus {
     bottom: 30px;
 
     color:white;
-    font-size: 16px;
+    font-size: 12px;
     /* background: #495C70; */
     background-image: url("/images/b11.png");
     padding: 9px 9px 9px 22px;
@@ -833,23 +834,46 @@ header
 
 }
 
-header h2
-{    position: absolute;
+#oldstyle{
+    width: 5%;
+}
+
+#punkbird{
+
+    position: absolute;
+    margin-left: -134px;
+    margin-top: 19px;
+    width:8%;
+}
+
+#pixelbird
+{
+    position: absolute;
+    margin-left: -236px;
+    margin-top: 1px;
+    width:4%;
+}
+
+#smallbird
+{    
+    position: absolute;
 
     /* transform: rotate(-5deg); */
     
-    font-size: 2.8em;
-    margin-top: -60px;
+    /* font-size: 2.8em;
+    margin-top: -70px;
     margin-left: 430px;
-    width: 350px;
+    width: 350px; */
+
+        margin-left: -50px;
+    margin-top: 140px;
     
-    text-align: center;
-    color: #202020;
-    /* background-color: #2d2d2d; */
-    letter-spacing: .1em;
-    text-shadow: 
-      -1px -1px 1px #111, 
-      2px 2px 1px #363636;
+    -moz-transform: scaleX(-1);
+    -o-transform: scaleX(-1);
+    -webkit-transform: scaleX(-1);
+    transform: scaleX(-1);
+    filter: FlipH;
+    -ms-filter: "FlipH";
 }
 
 
